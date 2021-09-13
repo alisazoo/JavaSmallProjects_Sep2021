@@ -14,6 +14,9 @@ public class ch15 {
         String url = "jdbc:mysql://localhost/courses?autoReconnect=true&useSSL=false";
         String user = "as";
         String password = "arisa8585";
+        // for mac
+//        String user = "root";
+//        String password = "";
 
         try
         {
