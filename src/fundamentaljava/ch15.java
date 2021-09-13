@@ -11,7 +11,7 @@ public class ch15 {
     public static void main(String[] args) {
 
         Connection conn = null;
-        String url = "jdbc:mysql://localhost/courses";
+        String url = "jdbc:mysql://localhost/courses?autoReconnect=true&useSSL=false";
         String user = "as";
         String password = "arisa8585";
 
