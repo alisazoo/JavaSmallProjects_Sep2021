@@ -1,32 +1,40 @@
+// for MySQL
+//        String url = "jdbc:mysql://localhost/courses?autoReconnect=true&useSSL=false&serverTimezone=JST";
+//        String user = "as";
+//        String password = "arisa8585";
 package fundamentaljava;
-
-import javax.swing.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class ch15 {
 
     public static void main(String[] args) {
-
         Connection connection = null;
-//        String url = "jdbc:mysql://192.168.3.140/courses?autoReconnect=true&useSSL=false";
-//        String url = "jdbc:mysql://localhost/courses?autoReconnect=true&useSSL=false&serverTimezone=JST";
-        String url = "jdbc:postgresql://localhost:5432/postgres";
-
-//        String user = "as";
-//        String password = "arisa8585";
+        String url = "jdbc:postgresql://localhost:5432/courses";
         String user = "postgres";
         String password = "arisa";
-
         try
         {
             connection = DriverManager.getConnection(url, user, password);
-//            Statement statement = connection.createStatement();
             System.out.println("connected");
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+
+            Statement statement = connection.createStatement();
+            String selectAllSql = "SELECT * FROM courses";
+            String selectCost = "SELECT * FROM courses WHERE cost < 1000";
+            ResultSet result = statement.executeQuery(selectCost);
+            while(result.next()){
+                String name = result.getString("name");
+                String nod = result.getString("numberofdays");
+                String cost = result.getString("cost");
+                System.out.println(name
+
+
+
+
+
+                        + ": " + nod + ", " + cost);
+            }
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
         } finally{
             try{
                 if (connection != null){
